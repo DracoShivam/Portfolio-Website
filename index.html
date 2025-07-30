@@ -353,10 +353,9 @@
                     videoEl.autoplay = true;
                     videoEl.loop = true;
                     videoEl.muted = true;
-                    videoEl.playsinline = false;
+                    videoEl.playsinline = true;
                     modalMediaContainer.appendChild(videoEl);
                 } else { // Assume it's an image (png, jpg, gif)
-
 
                     const imgEl = document.createElement('img');
                     imgEl.src = mediaPath;
