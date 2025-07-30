@@ -173,28 +173,28 @@
             <div class="container mx-auto max-w-7xl px-6">
                 <h2 class="section-title text-center mb-12">Projects</h2>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- NOTE: Replace data-media with your actual video/GIF file paths -->
+                    <!-- NOTE: Convert your videos to .mp4 and update the paths here -->
                     <div class="project-card" data-title="Task Rewarding App" data-summary="Engineered a scalable Python backend to power a motivational app. Integrated the Gemini API to generate personalized task recommendations and provide intelligent user feedback. Designed the system architecture to support AI-driven features, demonstrating proficiency in API integration and building intelligent systems." data-media="Images/p5.png" data-repo="https://github.com/DracoShivam/Gemini_Persona5_stats">
                         <video poster="Images/p5.png" loop muted playsinline></video>
                         <div class="overlay"><h4 class="text-2xl">Task Rewarding App</h4></div>
                     </div>
-                    <div class="project-card" data-title="Marble Wave TD" data-summary="Architected and implemented core game systems in C# for a tower defense game. Key features include a robust enemy wave generation system, dynamic difficulty scaling based on player performance, and unique power-up mechanics. Programmed a dynamic camera system that tracks player action to enhance gameplay visibility." data-media="Videos/MarbleWave.mkv" data-repo="https://github.com/DracoShivam/jp-4/tree/main">
+                    <div class="project-card" data-title="Marble Wave TD" data-summary="Architected and implemented core game systems in C# for a tower defense game. Key features include a robust enemy wave generation system, dynamic difficulty scaling based on player performance, and unique power-up mechanics. Programmed a dynamic camera system that tracks player action to enhance gameplay visibility." data-media="Videos/MarbleWave.mp4" data-repo="https://github.com/DracoShivam/jp-4/tree/main">
                         <video poster="Images/MarbleWave.jpg" loop muted playsinline></video>
                         <div class="overlay"><h4 class="text-2xl">Marble Wave TD</h4></div>
                     </div>
-                    <div class="project-card" data-title="Barrel Ninja" data-summary="Developed a 'Fruit Ninja' style game with a twist. Architected a game manager using a finite state machine to handle the core loop (Menu, Gameplay, Game Over). Implemented responsive UI using Unity Events to decouple UI from gameplay logic, and handled 2D physics with AddTorque for satisfying slicing mechanics." data-media="Videos/BarrelNinja.mkv" data-repo="https://github.com/DracoShivam/jp-5/tree/main">
+                    <div class="project-card" data-title="Barrel Ninja" data-summary="Developed a 'Fruit Ninja' style game with a twist. Architected a game manager using a finite state machine to handle the core loop (Menu, Gameplay, Game Over). Implemented responsive UI using Unity Events to decouple UI from gameplay logic, and handled 2D physics with AddTorque for satisfying slicing mechanics." data-media="Videos/BarrelNinja.mp4" data-repo="https://github.com/DracoShivam/jp-5/tree/main">
                         <video poster="Images/Barrel Ninja.jpg" loop muted playsinline></video>
                         <div class="overlay"><h4 class="text-2xl">Barrel Ninja</h4></div>
                     </div>
-                    <div class="project-card" data-title="Hurdle Rush" data-summary="Engineered an endless runner with a focus on performance and polish. Implemented an object pooling system for procedurally generated obstacles to maintain a high, stable framerate. Created a seamless, looping environment with parallax scrolling backgrounds and particle effects to enhance visual appeal." data-media="Videos/HurdleRush.mkv" data-repo="https://github.com/DracoShivam/jp-3/tree/main">
+                    <div class="project-card" data-title="Hurdle Rush" data-summary="Engineered an endless runner with a focus on performance and polish. Implemented an object pooling system for procedurally generated obstacles to maintain a high, stable framerate. Created a seamless, looping environment with parallax scrolling backgrounds and particle effects to enhance visual appeal." data-media="Videos/HurdleRush.mp4" data-repo="https://github.com/DracoShivam/jp-3/tree/main">
                         <video poster="Images/HurdleRush.jpg" loop muted playsinline></video>
                         <div class="overlay"><h4 class="text-2xl">Hurdle Rush</h4></div>
                     </div>
-                    <div class="project-card" data-title="IntenseFarm" data-summary="An exploration of AI and procedural content generation in Unity. Implemented the A* pathfinding algorithm to enable intelligent movement for AI agents. Utilized principles of the Entity Component System (ECS) for efficient management and spawning of a large number of game objects." data-media="Videos/IntenseFarm.mkv" data-repo="https://github.com/DracoShivam/jp-2/tree/main">
+                    <div class="project-card" data-title="IntenseFarm" data-summary="An exploration of AI and procedural content generation in Unity. Implemented the A* pathfinding algorithm to enable intelligent movement for AI agents. Utilized principles of the Entity Component System (ECS) for efficient management and spawning of a large number of game objects." data-media="Videos/IntenseFarm.mp4" data-repo="https://github.com/DracoShivam/jp-2/tree/main">
                         <video poster="Images/IntenseFarm.jpg" loop muted playsinline></video>
                         <div class="overlay"><h4 class="text-2xl">IntenseFarm</h4></div>
                     </div>
-                     <div class="project-card" data-title="Driv3D" data-summary="A foundational project to build a robust vehicle controller in Unity. Focused on handling raw player input and translating it into physics-based movement. Implemented realistic vehicle behavior through tuning of forces, friction, and collision response with the environment." data-media="Videos/Driv3d.mkv" data-repo="https://github.com/DracoShivam/JP-1">
+                     <div class="project-card" data-title="Driv3D" data-summary="A foundational project to build a robust vehicle controller in Unity. Focused on handling raw player input and translating it into physics-based movement. Implemented realistic vehicle behavior through tuning of forces, friction, and collision response with the environment." data-media="Videos/Driv3d.mp4" data-repo="https://github.com/DracoShivam/JP-1">
                         <video poster="Images/Driv3d.jpg" loop muted playsinline></video>
                         <div class="overlay"><h4 class="text-2xl">Driv3D</h4></div>
                     </div>
@@ -329,13 +329,18 @@
 
         projectCards.forEach(card => {
             const video = card.querySelector('video');
-            video.src = card.dataset.video || card.querySelector('img')?.src || '';
+            const mediaPath = card.dataset.media;
+            // Set the video source for the hover preview
+            if (mediaPath.endsWith('.mp4') || mediaPath.endsWith('.webm')) {
+                 video.src = mediaPath;
+            }
 
             card.addEventListener('mouseenter', () => {
                 video.play().catch(e => {});
             });
             card.addEventListener('mouseleave', () => {
                 video.pause();
+                video.currentTime = 0; // Reset video to start
             });
 
             card.addEventListener('click', () => {
@@ -343,7 +348,6 @@
                 modalSummary.textContent = card.dataset.summary;
                 modalRepoLink.href = card.dataset.repo;
                 
-                const mediaPath = card.dataset.media;
                 modalMediaContainer.innerHTML = ''; // Clear previous content
 
                 if (mediaPath.endsWith('.mp4') || mediaPath.endsWith('.webm')) {
@@ -352,11 +356,11 @@
                     videoEl.className = 'w-full h-full object-cover';
                     videoEl.autoplay = true;
                     videoEl.loop = true;
-                    videoEl.muted = true;
+                    videoEl.muted = false; // Unmute in modal
+                    videoEl.controls = true;
                     videoEl.playsinline = true;
                     modalMediaContainer.appendChild(videoEl);
                 } else { // Assume it's an image (png, jpg, gif)
-
                     const imgEl = document.createElement('img');
                     imgEl.src = mediaPath;
                     imgEl.className = 'w-full h-full object-cover';
