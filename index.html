@@ -173,7 +173,14 @@
             <div class="container mx-auto max-w-7xl px-6">
                 <h2 class="section-title text-center mb-12">Projects</h2>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- NOTE: Convert your videos to .mp4 and update the paths here -->
+                    <div class="project-card" data-title="Barrel Ninja" data-summary="Developed a 'Fruit Ninja' style game with a twist. Architected a game manager using a finite state machine to handle the core loop (Menu, Gameplay, Game Over). Implemented responsive UI using Unity Events to decouple UI from gameplay logic, and handled 2D physics with AddTorque for satisfying slicing mechanics." data-media="Videos/BarrelNinja.mp4" data-repo="https://github.com/DracoShivam/jp-5/tree/main">
+                        <video poster="Images/Barrel Ninja.jpg" loop muted playsinline></video>
+                        <div class="overlay"><h4 class="text-2xl">Barrel Ninja</h4></div>
+                    </div>
+                    <div class="project-card" data-title="3rd Person Character Controller" data-summary="Engineered a robust third-person character controller in Unity using C#. This system features responsive, physics-based movement, including walking, running, and jumping. It includes a dynamic third-person camera that smoothly follows the player and avoids obstacles, ensuring clear visibility during gameplay." data-media="Videos/1722361729325.mp4" data-repo="https://github.com/DracoShivam/">
+                        <video poster="Images/character-controller-poster.jpg" loop muted playsinline></video>
+                        <div class="overlay"><h4 class="text-2xl">3rd Person Controller</h4></div>
+                    </div>
                     <div class="project-card" data-title="Task Rewarding App" data-summary="Engineered a scalable Python backend to power a motivational app. Integrated the Gemini API to generate personalized task recommendations and provide intelligent user feedback. Designed the system architecture to support AI-driven features, demonstrating proficiency in API integration and building intelligent systems." data-media="Images/p5.png" data-repo="https://github.com/DracoShivam/Gemini_Persona5_stats">
                         <video poster="Images/p5.png" loop muted playsinline></video>
                         <div class="overlay"><h4 class="text-2xl">Task Rewarding App</h4></div>
@@ -181,10 +188,6 @@
                     <div class="project-card" data-title="Marble Wave TD" data-summary="Architected and implemented core game systems in C# for a tower defense game. Key features include a robust enemy wave generation system, dynamic difficulty scaling based on player performance, and unique power-up mechanics. Programmed a dynamic camera system that tracks player action to enhance gameplay visibility." data-media="Videos/MarbleWave.mp4" data-repo="https://github.com/DracoShivam/jp-4/tree/main">
                         <video poster="Images/MarbleWave.jpg" loop muted playsinline></video>
                         <div class="overlay"><h4 class="text-2xl">Marble Wave TD</h4></div>
-                    </div>
-                    <div class="project-card" data-title="Barrel Ninja" data-summary="Developed a 'Fruit Ninja' style game with a twist. Architected a game manager using a finite state machine to handle the core loop (Menu, Gameplay, Game Over). Implemented responsive UI using Unity Events to decouple UI from gameplay logic, and handled 2D physics with AddTorque for satisfying slicing mechanics." data-media="Videos/BarrelNinja.mp4" data-repo="https://github.com/DracoShivam/jp-5/tree/main">
-                        <video poster="Images/Barrel Ninja.jpg" loop muted playsinline></video>
-                        <div class="overlay"><h4 class="text-2xl">Barrel Ninja</h4></div>
                     </div>
                     <div class="project-card" data-title="Hurdle Rush" data-summary="Engineered an endless runner with a focus on performance and polish. Implemented an object pooling system for procedurally generated obstacles to maintain a high, stable framerate. Created a seamless, looping environment with parallax scrolling backgrounds and particle effects to enhance visual appeal." data-media="Videos/HurdleRush.mp4" data-repo="https://github.com/DracoShivam/jp-3/tree/main">
                         <video poster="Images/HurdleRush.jpg" loop muted playsinline></video>
@@ -331,7 +334,7 @@
             const video = card.querySelector('video');
             const mediaPath = card.dataset.media;
             // Set the video source for the hover preview
-            if (mediaPath.endsWith('.mp4') || mediaPath.endsWith('.webm')) {
+            if (mediaPath && (mediaPath.endsWith('.mp4') || mediaPath.endsWith('.webm'))) {
                  video.src = mediaPath;
             }
 
@@ -350,7 +353,7 @@
                 
                 modalMediaContainer.innerHTML = ''; // Clear previous content
 
-                if (mediaPath.endsWith('.mp4') || mediaPath.endsWith('.webm')) {
+                if (mediaPath && (mediaPath.endsWith('.mp4') || mediaPath.endsWith('.webm'))) {
                     const videoEl = document.createElement('video');
                     videoEl.src = mediaPath;
                     videoEl.className = 'w-full h-full object-cover';
